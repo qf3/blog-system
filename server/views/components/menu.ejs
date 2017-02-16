@@ -1,0 +1,77 @@
+
+  <div class="ui secondary pointing menu massive main">
+  <div class="ui text container justified container">
+
+      <a class="item active" href="/">首页</a>
+      <a class="item">前端</a>
+      <a class="item">音乐</a>
+      <a class="item">电影</a>
+      <a class="item">绘画</a>
+      <a class="item">音乐</a>
+
+
+  <% if (user) { %>
+
+  <div class="ui right dropdown item">
+  <%=user.username%><i class="icon dropdown"></i>
+    <div class="menu">
+      <a class="item"><i class="edit icon"></i> 修改资料</a>
+      <a class="item"><i class="globe icon"></i> 选择语言</a>
+      <a class="item" href='/logout'><i class="settings icon"></i> 退出</a>
+    </div>
+  </div>
+
+  <% } else { %>
+  <div class="right menu">
+    <a class="item" href='/login'>登陆</a>
+    <a class="item" href='/register'>注册</a>
+  </div>
+  <% } %>
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- <div class="ui left fixed vertical menu secondary pointing">
+  <div class="item">
+    <img class="ui mini image" src="/img/chick.png">
+  </div>
+  <a class="item active">Features</a>
+  <a class="item">Testimonials</a>
+  <a class="item">Sign-in</a>
+</div>
+<div class="ui right fixed vertical menu">
+  <div class="item">
+    <img class="ui mini image" src="/images/logo.png">
+  </div>
+  <a class="item">Features</a>
+  <a class="item">Testimonials</a>
+  <a class="item">Sign-in</a>
+</div>
+ -->
+
+
+<script>
+  $(document).ready(function(){
+
+    $('a').on('click',function(){
+      $('a').removeClass('active');
+      $(this).addClass('active'); 
+    });
+  
+    $('.ui.dropdown').dropdown();  
+
+  $('.main.menu').visibility({
+    type: 'fixed'
+      });
+    /*$('.main.menu').css({
+      'background-color':'#fff'
+    });
+*/
+  });
+</script>

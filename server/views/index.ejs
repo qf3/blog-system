@@ -1,0 +1,41 @@
+<%- include('header')%>
+<%- include('components/menu')%>
+	
+
+	
+<% docs.forEach(function(value,index,array){ %>
+	<div class="ui segment text justified container ">
+		<div class="ui large feed">
+			<div class="event">
+				<div class="label">
+					<img src="/img/chick.png">
+				</div>
+				<div class="content">
+					<div class="date"><%=docs[index].created%></div>
+					<div class="summary"><%=docs[index].author%></div>
+
+				</div>
+			</div>
+			<div class="index_content">
+				<a href="/content/<%=docs[index]._id%>"><h1 ><%=docs[index].title%></h1></a>
+				<div><%-docs[index].content%></div>
+			</div>
+		</div>
+		
+<div class="ui large feed">
+	<div class="event">
+		<div class="content">
+			<div class="meta">
+        		<a class="comment"><i class="comment icon"></i> 4 评论</a>
+     		</div>
+		</div>
+	</div>
+</div>
+
+		
+
+	</div>
+<% }); %>
+	
+
+<%- include('footer')%>

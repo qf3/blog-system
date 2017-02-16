@@ -1,0 +1,33 @@
+<%- include('header')%>
+<%- include('components/menu')%>
+<form class="ui form segment" method="post">
+
+	<div class="field">
+		<label>分类</label>
+		<select class="ui dropdown" name="category">
+			<option value="fe">前端</option>
+			<option value="mu">音乐</option>
+			<option value="dr">绘画</option>
+			<option value="ot">其他</option>
+		</select>
+	</div>
+
+	<div class="field">
+		<label>标题</label>
+		<textarea rows="1" name="title"></textarea>
+	</div>
+
+	<div class="field">
+		<label>内容</label>
+		<textarea name="body"></textarea>
+	</div>
+	<button class="ui submit button">提交</button>
+</from>
+<%- include('footer')%>
+
+<script>
+	$('select.dropdown')
+  .dropdown();
+
+
+</script>

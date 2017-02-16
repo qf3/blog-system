@@ -1,0 +1,131 @@
+<%-include('header')%>
+<div class="rmCenter">
+
+
+<form class="ui form segment" method="post">
+		<div class="required field">
+			<label>用户名</label>
+			
+			<input type="text" name="name" placeholder="用户名">
+			
+		</div>
+		<div class="required field">
+			<label>密码</label>
+			<input type="text" name="password" placeholder="密码">
+		</div>
+		<div class="ui submit button">确定</div>
+	</form>
+
+
+</div>
+
+
+
+<script>
+
+
+function checkExist(){
+	var nflag,pflag;
+	 $.ajax({
+		async:false,
+		type:'post',
+		url:'/validator/loginCheck',
+		data:$('form').serialize(),
+		success:function(data){
+			if (data.n===false) {
+				//console.log('用户名已存在');
+				nflag = false;
+			}
+			else{
+				//console.log('用户名不存在');
+				nflag = true;
+			}
+			if (data.p===false) {
+				// console.log('youwu');
+				pflag = false
+			}
+			else{
+				pflag = true;
+				// console.log('youwu');
+			}
+			
+		}
+	});
+	 return [nflag,pflag];
+	 //console.log(c);
+}
+
+$.fn.form.settings.rules.checkUserName = function(){
+	return checkExist()[0]===false?false:true;
+}
+
+$.fn.form.settings.rules.checkUserPassword = function(){
+	return checkExist()[1]===false?false:true;
+}
+$('.ui.form')
+	.form({
+		fields:{
+			name:{
+				identifier:'name',
+				rules:
+				[
+					{
+						type:'empty',
+						prompt:'用户名不能为空'
+					},
+					{
+						type:'checkUserName',
+						prompt:'用户名不存在'
+					}
+				]
+			},
+			password:{
+				identifier:'password',
+				rules:
+				[
+					{
+						type:'empty',
+						prompt:'密码不能为空'
+					},
+					
+					{
+						type:'checkUserPassword',
+						prompt:'密码有错误'
+					}
+				]
+			},
+
+		},
+		inline:true,
+		on:'blur',
+
+		//onSuccess:submitForm
+		
+	});
+
+
+
+
+/*$('.submit').click(function(){
+		var formData = $('form').serialize();//将表单内容序列化成字符串
+		$.ajax({
+			type:"post",
+			url:'/register',//请求发送的url地址
+			data:formData,//字符串值，连同请求发送到服务器的数据
+			//dataType//规定预期服务器相应的数据类型
+			success:function(data){//请求成功时执行的回调
+				//$('#a').html('sdfsfsdf');
+				$('.j').html(data);
+			},
+			error:function(){
+				// $('#a').html('sdfsfsdf');
+				alert('afdsf')
+			}
+		});
+	})
+*/
+
+
+</script>
+<%-include('footer')%>
+

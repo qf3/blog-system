@@ -1,0 +1,44 @@
+.index_content>a>h1{
+
+	margin-bottom: 1rem;
+}
+
+.index_content>a{
+
+}
+
+
+
+/*小屏幕时两边间距*/
+@media only screen and (max-width: 767px) {
+  .ui.container {
+    margin-left: 0em !important;
+    margin-right: 1em !important;
+  }
+
+
+
+.ui.secondary.pointing.menu {
+  /*修改主菜单背景颜色*/
+  background-color: #fff;
+}
+
+
+
+/*主页图片头像为原型*/
+.ui.feed > .event > .label {
+  width: 3em;
+}
+
+.ui.feed > .event > .label img {
+ 
+ 	height: 3em;
+   border-radius: 50%;
+}
+
+.ui.feed > .event > .content .date {
+  margin: -0.7rem 0em 0em;
+  color: rgba(0, 0, 0, 1);
+}
+
+/*字体颜色*/

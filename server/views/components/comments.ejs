@@ -1,0 +1,34 @@
+<div class="ui comments">
+
+	<%docs.comments_id.forEach(function(value,index,array){%>
+	<div class="comment ui segment">
+		<a class="avatar" href="#" >
+			<img src="/img/chick.png" alt="##">
+		</a>
+		<div class="content">
+			<a class="author" href="#" ><%=docs.comments[index].commenter%></a>
+			<div class="metadata">
+				<span class="date"><%=docs.comments[index].created%></span>
+			</div>
+			<div class="text">
+				<p><%=docs.comments[index].body%></p>
+			</div>
+			<div class="actions">
+				<a class="reply">回复</a>
+			</div>
+		</div>
+	</div>
+	
+	<%});%>
+
+
+	<form class="ui reply form" method="post">
+	    <div class="field">
+	      <textarea name="body"></textarea>
+	    </div>
+	    <button class="ui blue labeled submit icon button">
+	      <i class="icon edit"></i> 添加回复
+	    </button>
+  	</form>
+</div>
+

@@ -1,0 +1,14 @@
+<%- include('header')%>
+<%- include('components/menu')%>
+<div class="ui segment text justified container">
+	
+		<h1><%=docs.title%></h1>
+		<h3><%=docs.author%></h3>
+		<div><%-docs.body%></div>
+	
+</div>
+	<div class="ui  text justified container">
+		<%- include('components/comments')%>
+	</div>
+
+<%- include('footer')%>

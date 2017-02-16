@@ -1,0 +1,121 @@
+<%-include('header')%>
+<div class="rmCenter">
+	<div class="register">
+		
+	<div class="ui attached message ">
+		<div class="header">欢迎访问！</div>
+		<p class="j"></p>
+	</div>
+<form class="ui form segment" method="post">
+		<div class="required field">
+			<label>用户名</label>
+			
+			<input type="text" name="name" placeholder="用户名" >
+			
+		</div>
+		<div class="required field">
+			<label>密码</label>
+			<input type="text" name="password" placeholder="密码">
+		</div>
+		<div class="required field">
+			<label>确认密码</label>
+			<input type="text" name="repassword" placeholder="确认密码">
+		</div>
+		<div class="required field">
+			<label>性别</label>
+			<select class="ui dropdown" name="gender">
+				<option value="f">男</option>
+				<option value="m">女</option>
+				<option value="x">其他</option>
+			</select>
+		</div>
+		<div class="ui submit button">确定</div>
+		<div class="ui button red"><a href="/">取消</a></div>
+	</form>
+	
+	</div>
+</div>
+
+<script>
+
+
+function checkExist(){
+	var flag;
+	 $.ajax({
+		async:false,
+		type:'post',
+		url:'/validator/registerCheck',
+		data:$('form').serialize(),
+		success:function(data){
+			if (data===false) {
+				//console.log('用户名已存在');
+				flag = false;
+				
+			}else{
+				//console.log('用户名不存在');
+				flag = true;
+			}
+			
+		}
+	});
+	 return flag;
+	 //console.log(c);
+}
+ 
+$.fn.form.settings.rules.checkUserName = function(){
+	return checkExist()===false?false:true;
+}
+
+$('.ui.form')
+	.form({
+		fields:{
+			name:{
+				identifier:'name',
+				rules:
+				[
+					{
+						type:'empty',
+						prompt:'用户名不能为空'
+					},
+					{
+						type:'checkUserName',
+						prompt:'用户名已存在'
+					}
+				]
+			},
+			password:{
+				identifier:'password',
+				rules:
+				[
+					{
+						type:'empty',
+						prompt:'密码不能为空'
+					},
+					
+					{
+						type:'minLength[8]',
+						prompt:'密码最少是8位'
+					}
+				]
+			},
+
+			repassword:{
+				identifier:'repassword',
+				rules:
+				[
+					{
+						type:'match[password]',
+						prompt:'两次输入的密码不一致'
+					}
+				]
+			}
+
+		},
+		inline:true,
+		on:'blur',
+		
+	});
+
+</script>
+<%-include('footer')%>
+
